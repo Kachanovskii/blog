@@ -1,5 +1,9 @@
+import { Route, Router, Routes } from 'react-router-dom';
 import './App.css'
 import { createTheme, CssBaseline, ThemeProvider } from '@mui/material';
+import HomePage from './pages/HomePage';
+import PostPage from './pages/PostPage';
+import AboutPage from './pages/AboutPage';
 
 const theme = createTheme({
   palette: {
@@ -17,8 +21,13 @@ function App() {
     <>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <h1>Test</h1>
-        <a href="">test</a>
+        <Router>
+          <Routes>
+            <Route path='/' element={<HomePage />} />
+            <Route path='/post/:id' element={<PostPage />} />
+            <Route path='/about' element={<AboutPage />} />
+          </Routes>
+        </Router>
       </ThemeProvider>
     </>
   )
