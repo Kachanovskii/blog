@@ -1,13 +1,21 @@
 import { Grid } from "@mui/material";
 import BlogCard from "../components/BlogCard";
-import { Post } from "../types/types";
 import { usePosts } from "../hooks/usePosts";
+import Loader from "../components/Loader";
+import BasicPagination from "../components/BasicPagination";
 
 function HomePage() {
-  const {posts, loading, error} = usePosts();
+  const {posts, loading, error, page, setPage} = usePosts();
+
+  const handlePageChange = (_event: React.ChangeEvent<unknown>, value: number) => {
+    console.log(true)
+    setPage(value);
+  }
 
   if (loading) {
-    return <div>Loading...</div>
+    return <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', height: '300px'}}>
+      <Loader />
+    </div>
   }
 
   if (error) {
@@ -23,6 +31,10 @@ function HomePage() {
           </Grid>
         ))}
       </Grid>
+
+      <div style={{display: 'flex', justifyContent: 'center', marginTop: '16px'}}>
+        <BasicPagination page={page} count={10} onChange={handlePageChange} />
+      </div>
     </div>
   );
 }

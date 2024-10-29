@@ -11,6 +11,7 @@ function BlogCard({post}: BlogCardProps) {
     <Card sx={{ minWidth: 275 }}>
       <CardContent>
         <Typography variant="h5" component="div">
+          <span>{post.id} </span>
           {post.title}
         </Typography>
         <Typography variant="body2">
